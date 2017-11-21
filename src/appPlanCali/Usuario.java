@@ -1,5 +1,5 @@
 package appPlanCali;
-import java.util.ArrayList;
+import processing.core.PApplet;
 
 public class Usuario {
 
@@ -9,6 +9,10 @@ public class Usuario {
 	String barrio;
 	
 	private int[] categoriasUsu;
+	private int h;
+	private int r,g,b;
+	private int posY, move;
+	private int iniY;
 
 	public Usuario(String email, String nombre, int edad, String barrio, String likeAnimales, String likeNaturaleza, String likeHistoria, String likeCultural, String likeDeporte, String likeVerDeporte, String likeCine, String likeCocinar, String likeBeber, String likeMusica, String likeCantar, String likeMultitud) {
 		this.email = email;
@@ -38,6 +42,35 @@ public class Usuario {
 			if(categorias[i].contains("No me gusta")){ categoriasUsu[i] = 1;}
 			if(categorias[i].contains("No me gusta para nada")){ categoriasUsu[i] = 0;}
 		}
+		
+		h = 40;
+		move = 0;
+		r = 255; g = 255; b = 255;
+	}
+	
+	public void pintar(PApplet app, int i, int y){
+		posY = i*h + y + move;
+		iniY = y;
+		app.fill(r,g,b);
+		app.rect(0, posY, app.width, h);
+		app.fill(0);
+		app.text(nombre, 20, posY+25);
+	}
+	
+	public boolean validar(int x, int y){
+		
+		if(y > iniY){
+			if(y > posY && y < posY+h){
+				r = 255; b = 202; g = 58;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void moverLista(int y){
+		move += y;
 	}
 
 	public String getEmail() {
