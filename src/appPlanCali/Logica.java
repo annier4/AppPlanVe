@@ -9,7 +9,7 @@ import processing.core.PImage;
 public class Logica {
 
 	private Excel excel;
-	private int pantalla;
+	private int pantalla, mX, mY;;
 	private PImage[] pantallasImg;
 	private PImage iniS, iniS2, reg, reg2, quit;
 	private PImage back, entrar, noacount, ask, back1;
@@ -20,11 +20,15 @@ public class Logica {
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
 	private Carita caritas;
+	private ArrayList<Usuario> usuarios;
+	
+	private Object sel;
 
 	public Logica(PApplet app) {
 		// TODO Auto-generated constructor stub
 		excel = new Excel();
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
+		usuarios = analisis.getUsuarios();
 
 		pantalla = 3;
 		pantallasImg = new PImage[5];
@@ -34,6 +38,7 @@ public class Logica {
 		email = "";
 		pass = "";
 		adress = "";
+		sel = null;
 
 		// CARGAR BOTONES
 
@@ -169,11 +174,16 @@ public class Logica {
 
 		}
 
+		app.image(pantallasImg[pantalla],0,0, app.width, app.height);
+		pintarCamposRegistro( app, index );
+		listarUsuarios(app);
 	}
 
 	public void mousePressed(PApplet app, int x, int y) {
 		// TODO Auto-generated method stub
 
+		mX = x; mY = y; // Detectar coordenada inicial del mouse
+		
 		switch (pantalla) {
 		case 0:
 			// Acciones Pagina Landingpage
@@ -364,6 +374,14 @@ public class Logica {
 			break;
 		}
 	}
+	
+	private void listarUsuarios(PApplet app) {
+		if(pantalla == 6){
+			for (int i = 0; i < usuarios.size(); i++) {
+				usuarios.get(i).pintar(app, i, 0);
+			}
+		}
+	}
 
 	public void camposRegistro(int x, int y) {
 		// TODO Auto-generated method stub
@@ -512,6 +530,34 @@ public class Logica {
 
 				break;
 			}
+		}
+	}
+	
+	public void mouseClicked(int x, int y) {
+		// TODO Auto-generated method stub
+		
+		//Usuario que selecciona
+		if(pantalla == 6){
+			for (int i = 0; i < usuarios.size(); i++) {
+				if (usuarios.get(i).validar(x, y)) {
+					sel = usuarios.get(i);
+				}
+			}
+		}
+	}
+
+	public void mouseDragged(int x, int y) {
+		// TODO Auto-generated method stub
+		
+		if(pantalla == 6){
+			for (int i = 0; i < usuarios.size(); i++) {
+				if(mY < y){
+					usuarios.get(i).moverLista(-5);
+				}else if(mY > y){
+					usuarios.get(i).moverLista(+5);
+				}
+			}
+			mX= x; mY = y;
 		}
 	}
 }

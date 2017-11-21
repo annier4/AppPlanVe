@@ -144,4 +144,12 @@ public class Analisis {
 		}
 	}
 
+	public ArrayList<Lugar> getLugares() {
+		return lugares;
+	}
+
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
 }
