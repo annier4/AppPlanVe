@@ -31,8 +31,8 @@ public class Logica {
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = analisis.getUsuarios();
 
-		pantalla = 6;
-		pantallasImg = new PImage[6];
+		pantalla = 0;
+		pantallasImg = new PImage[5];
 		index = 6;
 		name = "";
 		user = "";
@@ -75,7 +75,7 @@ public class Logica {
 		// -----------------------------------------------------------------
 
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if (i < 7) {
+			if (i < 6) {
 				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
 			} else {
 				pantallasImg[i] = app.loadImage("../data/p-" + (i + 1) + ".jpg");
@@ -175,9 +175,7 @@ public class Logica {
 
 		}
 
-		app.image(pantallasImg[pantalla],0,0, app.width, app.height);
-		pintarCamposRegistro( app, index );
-		listarUsuarios(app);
+		
 	}
 
 	public void mousePressed(PApplet app, int x, int y) {
