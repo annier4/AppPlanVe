@@ -8,6 +8,9 @@ public class Logica {
 	private Excel excel;
 	private int pantalla;
 	private PImage[] pantallasImg;
+	private PImage iniS, iniS2, reg, reg2, quit;
+	private PImage back, entrar, noacount, ask,  back1;
+	
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
@@ -18,8 +21,8 @@ public class Logica {
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		
 		
-		pantalla = 6;
-		pantallasImg = new PImage[16];
+		pantalla = 1;
+		pantallasImg = new PImage[2];
 		index = 6;
 		name = "";
 		user = "";
@@ -27,11 +30,33 @@ public class Logica {
 		pass = "";
 		adress = "";
 		
+		
+	
+		// CARGAR BOTONES 
+		
+		
+		iniS = app.loadImage("../data/Recursos_Pantallas/Iniciar_sesion.png");
+		iniS2 = app.loadImage("../data/Recursos_Pantallas/iniciar_sesion2.png");
+		reg = app.loadImage("../data/Recursos_Pantallas/Registrate.png");
+		reg2 = app.loadImage("../data/Recursos_Pantallas/Registrate2.png");
+		quit = app.loadImage("../data/Recursos_Pantallas/quit.png");
+		
+	// pantalla 1 
+		
+		back = app.loadImage("../data/Recursos_Pantallas/back.png");
+		back1 = app.loadImage("../data/Recursos_Pantallas/back1.png");
+		entrar = app.loadImage("../data/Recursos_Pantallas/Entrar.png");
+		noacount = app.loadImage("../data/Recursos_Pantallas/noacount.png");
+		ask = app.loadImage("../data/Recursos_Pantallas/ask.png");
+		
+		
+		//-----------------------------------------------------------------
+		
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if(i < 9){
-				pantallasImg[i] = app.loadImage("../data/p-0"+(i+1)+".png");
+			if(i < 3){
+				pantallasImg[i] = app.loadImage("../data/p-0"+(i+1)+".jpg");
 			}else{
-				pantallasImg[i] = app.loadImage("../data/p-"+(i+1)+".png");
+				pantallasImg[i] = app.loadImage("../data/p-"+(i+1)+".jpg");
 			}
 		}
 	}
@@ -40,6 +65,41 @@ public class Logica {
 		// TODO Auto-generated method stub
 		app.image(pantallasImg[pantalla],0,0, app.width, app.height);
 		pintarCamposRegistro( app, index );
+		
+		if (pantalla == 0) {
+			if (app.mouseX>= 10 && app.mouseX <= 190  && app.mouseY>= 580 && app.mouseY <=630) {
+				app.image(iniS2, 10, 580);	
+				
+			}else {
+				app.image(iniS, 10, 580);	
+			}
+			
+			if (app.mouseX>= 200 && app.mouseX <= 600 && app.mouseY>= 580 && app.mouseY <=630) {
+				app.image(reg2, 200, 580);
+			}else {
+				app.image(reg, 200, 580);	
+				
+			}
+			
+			
+			app.image(quit, 50, 650);
+			
+		}else if (pantalla == 1) {
+			
+		if (app.mouseX >= 45 && app.mouseX<=394 && app.mouseY >=20 && app.mouseY<= 60) {
+			app.image(back1, 45, 20);	
+		}else {
+			app.image(back, 45, 20);	
+		}
+		
+			app.image(noacount, 70, 650);
+			app.image(ask, 100, 100);
+			if (app.mouseX>= 70 && app.mouseX<=  332 && app.mouseY>=500 && app.mouseY<=573) {
+				app.image(entrar, 70, 497,265,78);	
+			}else {
+			app.image(entrar, 70, 500,262,73);
+		}
+		}
 		
 	}
 	
@@ -51,12 +111,12 @@ public class Logica {
 			//Acciones Pagina Landingpage
 			
 			//Login
-			if(x > 28 && x < 197 && y > 562 && y < 608){
+			if(x > 10 && x < 190 && y > 580 && y < 630){
 				pantalla = 1;
 			}
 			
 			//Registro
-			if(x > 207 && x < 381 && y > 562 && y < 608){
+			if(x > 200 && x < 600 && y > 580 && y < 630){
 				pantalla = 2;
 			}
 			
@@ -65,12 +125,13 @@ public class Logica {
 			//Acciones Página Login
 			
 			//btn Devolverse
-			if(x > 0 && x < 97 && y > 0 && y < 85){
+			
+			if(x > 45 && x < 394 && y > 20 && y < 60){
 				pantalla= 0;
 			}
 			
 			//btn LOGIN - Página de Inicio
-			if(x > 77 && x < 321 && y > 515 && y < 578){
+			if(x > 70 && x < 332 && y > 500 && y < 573){
 				pantalla= 13;
 			}
 			
