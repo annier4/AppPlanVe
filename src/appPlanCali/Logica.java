@@ -1,5 +1,7 @@
 package appPlanCali;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -12,11 +14,12 @@ public class Logica {
 	private PImage iniS, iniS2, reg, reg2, quit;
 	private PImage back, entrar, noacount, ask, back1;
 	private PImage regback, photo, finish;
-	private PImage instrucciones, next;
+	private PImage instrucciones, next, volver;
 
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
+	private Carita caritas;
 
 	public Logica(PApplet app) {
 		// TODO Auto-generated constructor stub
@@ -24,7 +27,7 @@ public class Logica {
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 
 		pantalla = 3;
-		pantallasImg = new PImage[4];
+		pantallasImg = new PImage[5];
 		index = 6;
 		name = "";
 		user = "";
@@ -59,10 +62,14 @@ public class Logica {
 		next = app.loadImage("../data/Recursos_Pantallas/next.png");
 		instrucciones = app.loadImage("../data/Recursos_Pantallas/instrucciones.png");
 
+		// pantalla 4 test
+
+		volver = app.loadImage("../data/Recursos_Pantallas/volver.png");
+
 		// -----------------------------------------------------------------
 
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if (i < 5) {
+			if (i < 6) {
 				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
 			} else {
 				pantallasImg[i] = app.loadImage("../data/p-" + (i + 1) + ".jpg");
@@ -151,6 +158,15 @@ public class Logica {
 				app.image(next, 60, 610, 270, 75);
 			}
 
+		} else if (pantalla > 3 && pantalla < 17) {
+
+			// BOTON PARA DEVOLVERSE
+			if (app.mouseX >= 45 && app.mouseX <= 394 && app.mouseY >= 20 && app.mouseY <= 60) {
+				app.image(back1, 45, 20);
+			} else {
+				app.image(volver, 45, 20);
+			}
+
 		}
 
 	}
@@ -207,13 +223,13 @@ public class Logica {
 			break;
 
 		case 3:
+			// INSTRUCCIONES
 			// Volver a iniciar sesion
 			if (x > 45 && x < 394 && y >= 20 && y <= 60) {
-			pantalla = 1;
-			
-			
+				pantalla = 1;
+
 			}
-			
+
 			if (x > 60 && x < 331 && y > 600 && y < 674) {
 				pantalla = 4;
 			}
@@ -221,13 +237,17 @@ public class Logica {
 			break;
 
 		case 4:
-			// Acciones Página Bienvenido
-
-			
-			// btn Ingresar - Página Inicio
-			if (x > 62 && x < 334 && y > 520 && y < 580) {
-				pantalla = 13;
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 3;
+			}else {
+				pantalla = 5;
 			}
+			
+			
+			
+				
+			
 
 			break;
 
