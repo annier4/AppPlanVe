@@ -24,14 +24,15 @@ public class Logica {
 	
 	private Object sel;
 
+
 	public Logica(PApplet app) {
 		// TODO Auto-generated constructor stub
 		excel = new Excel();
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = analisis.getUsuarios();
 
-		pantalla = 3;
-		pantallasImg = new PImage[5];
+		pantalla = 6;
+		pantallasImg = new PImage[6];
 		index = 6;
 		name = "";
 		user = "";
@@ -74,7 +75,7 @@ public class Logica {
 		// -----------------------------------------------------------------
 
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if (i < 6) {
+			if (i < 7) {
 				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
 			} else {
 				pantallasImg[i] = app.loadImage("../data/p-" + (i + 1) + ".jpg");
