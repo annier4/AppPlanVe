@@ -21,26 +21,30 @@ public class Logica {
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
+	private Analisis analisisGrupal;
 	private Carita caritas;
 	private ArrayList<Usuario> usuarios;
+	
+	private ArrayList<Usuario> selUsu;
 
 	private Object sel;
 
 	public Logica(PApplet app) {
 		// TODO Auto-generated constructor stub
 		excel = new Excel();
-		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
-		usuarios = analisis.getUsuarios();
+		//analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
+		usuarios = excel.getUsuarios();
 
 		pantalla = 19;
 		pantallasImg = new PImage[20];
+
 		index = 6;
 		name = "";
 		user = "";
 		email = "";
 		pass = "";
 		adress = "";
-		sel = null;
+		selUsu = new ArrayList<Usuario>();
 
 		// CARGAR BOTONES
 
@@ -130,8 +134,9 @@ public class Logica {
 
 	public void pintar(PApplet app) {
 		// TODO Auto-generated method stub
-		app.image(pantallasImg[pantalla], 0, 0, app.width, app.height);
+		//app.image(pantallasImg[pantalla], 0, 0, app.width, app.height);
 		pintarCamposRegistro(app, index);
+		listarUsuarios(app);
 
 		if (pantalla == 0) {
 			if (app.mouseX >= 10 && app.mouseX <= 190 && app.mouseY >= 580 && app.mouseY <= 630) {
@@ -307,6 +312,16 @@ public class Logica {
 			app.image(cpscreen, 0, 0);
 			
 			app.image(cpscreen2, 0, 600);
+
+		}else if (pantalla == 6){
+			
+			// BOTON PARA HACER ANALISIS AL DAR CLICK -- Y PASAR A PANTALLA DE RESULTADOS
+			if (app.mouseX >= 70 && app.mouseX <= 332 && app.mouseY >= 500 && app.mouseY <= 573) {
+				app.image(entrar, 69, 498, 265, 78);
+			} else {
+				app.image(entrar, 70, 500, 262, 73);
+			}
+
 		}
 
 	}
@@ -405,6 +420,13 @@ public class Logica {
 				pantalla = 5;
 			} else {
 				pantalla = 7;
+			}
+			
+			// btn Analisis Plan Grupal
+			if (x >= 70 && x <= 332 && y >= 500 && y <= 573) {
+				if(selUsu.size() != 0){
+					analisisGrupal = new Analisis(excel.getLugares(), selUsu);
+				}
 			}
 
 			break;
@@ -535,7 +557,7 @@ public class Logica {
 	private void listarUsuarios(PApplet app) {
 		if (pantalla == 6) {
 			for (int i = 0; i < usuarios.size(); i++) {
-				usuarios.get(i).pintar(app, i, 0);
+				usuarios.get(i).pintar(app, i, 0, 450);
 			}
 		}
 	}
@@ -697,7 +719,15 @@ public class Logica {
 		if (pantalla == 6) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				if (usuarios.get(i).validar(x, y)) {
-					sel = usuarios.get(i);
+					if(usuarios.get(i).getSelect() == 1){
+						selUsu.add(usuarios.get(i));
+					}else{
+						for (int j = 0; j < selUsu.size(); j++) {
+							if (usuarios.get(i).getEmail() == selUsu.get(j).getEmail()){
+								selUsu.remove(j);
+							}
+						}
+					}
 				}
 			}
 		}
