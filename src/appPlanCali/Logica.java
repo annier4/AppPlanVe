@@ -11,7 +11,7 @@ public class Logica {
 	private Excel excel;
 	private int pantalla, mX, mY;;
 	private PImage[] pantallasImg;
-	private PImage iniS, iniS2, reg, reg2, quit;
+	private PImage iniS, iniS2, reg, reg2, quit, results;
 	private PImage back, entrar, noacount, ask, back1;
 	private PImage regback, photo, finish;
 	private PImage instrucciones, next, volver, startnow, iconmenu, iconmenun, cpscreen, cpscreen2;
@@ -24,7 +24,7 @@ public class Logica {
 	private Analisis analisisGrupal;
 	private Carita caritas;
 	private ArrayList<Usuario> usuarios;
-	
+
 	private ArrayList<Usuario> selUsu;
 
 	private Object sel;
@@ -32,7 +32,7 @@ public class Logica {
 	public Logica(PApplet app) {
 		// TODO Auto-generated constructor stub
 		excel = new Excel();
-		//analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
+		// analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = excel.getUsuarios();
 
 		pantalla = 19;
@@ -53,6 +53,7 @@ public class Logica {
 		reg = app.loadImage("../data/Recursos_Pantallas/Registrate.png");
 		reg2 = app.loadImage("../data/Recursos_Pantallas/Registrate2.png");
 		quit = app.loadImage("../data/Recursos_Pantallas/quit.png");
+		results = app.loadImage("../data/Recursos_Pantallas/results.png");
 
 		// pantalla 1 Iniciar Sesion
 
@@ -111,18 +112,14 @@ public class Logica {
 		opmenuccs = app.loadImage("../data/Recursos_Pantallas/opmenuccs.png");
 		opmenuas = app.loadImage("../data/Recursos_Pantallas/opmenuas.png");
 		opmenucssel = app.loadImage("../data/Recursos_Pantallas/opmenucssel.png");
-		
-		
+
 		// pantalla 19 crear plan
-		
-		cpscreen = app.loadImage("../data/Recursos_Pantallas/cp_screen.jpg"); 
-		cpscreen2 = app.loadImage("../data/Recursos_Pantallas/cp_screen2.jpg"); 
+
+		cpscreen = app.loadImage("../data/Recursos_Pantallas/cp_screen.jpg");
+		cpscreen2 = app.loadImage("../data/Recursos_Pantallas/cp_screen2.jpg");
 
 		// -----------------------------------------------------------------
 
-		
-		
-		
 		for (int i = 0; i < pantallasImg.length; i++) {
 			if (i < 19) {
 				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
@@ -134,7 +131,7 @@ public class Logica {
 
 	public void pintar(PApplet app) {
 		// TODO Auto-generated method stub
-		//app.image(pantallasImg[pantalla], 0, 0, app.width, app.height);
+		// app.image(pantallasImg[pantalla], 0, 0, app.width, app.height);
 		pintarCamposRegistro(app, index);
 		listarUsuarios(app);
 
@@ -293,26 +290,31 @@ public class Logica {
 				app.image(opmenucp, -3, 320);
 			}
 			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 380 && app.mouseY < 440) {
-			app.image(opmenuccs, -3, 380);
-			}else {
+				app.image(opmenuccs, -3, 380);
+			} else {
 				app.image(opmenucc, -3, 380);
 			}
 			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 440 && app.mouseY < 500) {
-			app.image(opmenuas, -3, 440);
-			}else {
-				app.image(opmenua, -3, 440);	
+				app.image(opmenuas, -3, 440);
+			} else {
+				app.image(opmenua, -3, 440);
 			}
 			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 620 && app.mouseY < 680) {
-			app.image(opmenucssel, -3, 620);
-			}else {
+				app.image(opmenucssel, -3, 620);
+			} else {
 				app.image(opmenucs, -3, 620);
 			}
-		}else if (pantalla == 19){
-			
-			app.image(cpscreen, 0, 0);
-			
-			app.image(cpscreen2, 0, 600);
+		} else if (pantalla == 19) {
 
+			app.image(cpscreen, 0, 0);
+
+			app.image(cpscreen2, 0, 600);
+		if (app.mouseX >82 && app.mouseX <638 && app.mouseY > 623 && app.mouseY < 685 ) {
+			app.image(results, 75, 619, 260, 70);
+		} else {
+			app.image(results, 75, 620,257, 67);
+		}
+			
 		}
 
 	}
@@ -532,10 +534,10 @@ public class Logica {
 			break;
 
 		case 19:
-			
+
 			// btn Analisis Plan Grupal
 			if (x >= 70 && x <= 332 && y >= 500 && y <= 573) {
-				if(selUsu.size() != 0){
+				if (selUsu.size() != 0) {
 					analisisGrupal = new Analisis(excel.getLugares(), selUsu);
 				}
 			}
@@ -710,11 +712,11 @@ public class Logica {
 		if (pantalla == 19) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				if (usuarios.get(i).validar(x, y)) {
-					if(usuarios.get(i).getSelect() == 1){
+					if (usuarios.get(i).getSelect() == 1) {
 						selUsu.add(usuarios.get(i));
-					}else{
+					} else {
 						for (int j = 0; j < selUsu.size(); j++) {
-							if (usuarios.get(i).getEmail() == selUsu.get(j).getEmail()){
+							if (usuarios.get(i).getEmail() == selUsu.get(j).getEmail()) {
 								selUsu.remove(j);
 							}
 						}
