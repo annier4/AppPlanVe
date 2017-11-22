@@ -35,8 +35,8 @@ public class Logica {
 		// analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = excel.getUsuarios();
 
-		pantalla = 19;
-		pantallasImg = new PImage[20];
+		pantalla = 17;
+		pantallasImg = new PImage[24];
 
 		index = 6;
 		name = "";
@@ -121,17 +121,17 @@ public class Logica {
 		// -----------------------------------------------------------------
 
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if (i < 19) {
-				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
+			if (i < 9) {
+				pantallasImg[i] = app.loadImage("../data/p-0" + (i+1) + ".jpg");
 			} else {
-				pantallasImg[i] = app.loadImage("../data/p-" + (i + 1) + ".jpg");
+				pantallasImg[i] = app.loadImage("../data/p-" + (i+1) + ".jpg");
 			}
 		}
 	}
 
 	public void pintar(PApplet app) {
 		// TODO Auto-generated method stub
-		// app.image(pantallasImg[pantalla], 0, 0, app.width, app.height);
+		 app.image(pantallasImg[pantalla], 0, 0, app.width, app.height);
 		pintarCamposRegistro(app, index);
 		listarUsuarios(app);
 
@@ -305,6 +305,8 @@ public class Logica {
 				app.image(opmenucs, -3, 620);
 			}
 		} else if (pantalla == 19) {
+			
+			
 
 			app.image(cpscreen, 0, 0);
 
@@ -315,6 +317,14 @@ public class Logica {
 			app.image(results, 75, 620,257, 67);
 		}
 			
+		}else if (pantalla ==20) {
+			
+			// BUTTON MENU DESPLEGABLE
+						if (app.mouseX >= 340 && app.mouseX <= 380 && app.mouseY >= 23 && app.mouseY <= 60) {
+							app.image(iconmenu, 330, 19, 62, 46);
+						} else {
+							app.image(iconmenu, 330, 20, 59, 43);
+						}
 		}
 
 	}
@@ -514,10 +524,18 @@ public class Logica {
 			break;
 
 		case 17:
-
-			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
+// ARMAR PLAN
+			if (x > 0 && x < 200 && y > 310 && y < 510) {
+				pantalla = 19;
+			}else if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
-			}
+				
+			} else if (x > 198 && x <= 400 && y > 505 && y < 705){
+					
+				pantalla = 21;
+				}
+			
+			
 
 			break;
 
@@ -525,7 +543,7 @@ public class Logica {
 
 			if (x > 340 && x < 380 && y > 23 && y < 60) {
 				pantalla = 17;
-			} else if (x > 0 && x < 323 && y > 140 && y < 200) {
+			} else if (x > 0 && x < 323 && y > 320 && y < 380) {
 				pantalla = 19;
 			} else {
 
@@ -534,16 +552,36 @@ public class Logica {
 			break;
 
 		case 19:
-
+// ARMAR PLAN 
 			// btn Analisis Plan Grupal
-			if (x >= 70 && x <= 332 && y >= 500 && y <= 573) {
+			if (x >82 && x <638 && y > 623 && y < 685 ) {
 				if (selUsu.size() != 0) {
 					analisisGrupal = new Analisis(excel.getLugares(), selUsu);
+					pantalla = 20;
 				}
 			}
 
 			break;
-
+		case 20: 
+			
+			// RESULTADOS
+			
+			if (x > 340 && x < 380 && y > 23 && y < 60) {
+				pantalla = 18;
+			} 
+			
+			break;
+			
+		case 23: // perfil 
+			if (x > 340 && x < 380 && y > 23 && y < 60) {
+				pantalla = 18;
+			} 
+			
+			
+			
+			break;
+			
+			
 		}
 	}
 
