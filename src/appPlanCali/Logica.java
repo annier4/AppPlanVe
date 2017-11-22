@@ -21,9 +21,8 @@ public class Logica {
 	private Analisis analisis;
 	private Carita caritas;
 	private ArrayList<Usuario> usuarios;
-	
-	private Object sel;
 
+	private Object sel;
 
 	public Logica(PApplet app) {
 		// TODO Auto-generated constructor stub
@@ -32,7 +31,7 @@ public class Logica {
 		usuarios = analisis.getUsuarios();
 
 		pantalla = 0;
-		pantallasImg = new PImage[5];
+		pantallasImg = new PImage[17];
 		index = 6;
 		name = "";
 		user = "";
@@ -75,7 +74,7 @@ public class Logica {
 		// -----------------------------------------------------------------
 
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if (i < 6) {
+			if (i < 18) {
 				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
 			} else {
 				pantallasImg[i] = app.loadImage("../data/p-" + (i + 1) + ".jpg");
@@ -175,14 +174,14 @@ public class Logica {
 
 		}
 
-		
 	}
 
 	public void mousePressed(PApplet app, int x, int y) {
 		// TODO Auto-generated method stub
 
-		mX = x; mY = y; // Detectar coordenada inicial del mouse
-		
+		mX = x;
+		mY = y; // Detectar coordenada inicial del mouse
+
 		switch (pantalla) {
 		case 0:
 			// Acciones Pagina Landingpage
@@ -249,133 +248,144 @@ public class Logica {
 			// Devolverse
 			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
 				pantalla = 3;
-			}else {
+			} else {
 				pantalla = 5;
 			}
-			
-			
-			
-				
-			
 
 			break;
 
 		case 5:
-			// Acciones Página Menu
-
-			// btn Recomendados -> Página Inicio
-			if (x > 0 && x < 325 && y > 209 && y < 269) {
-				pantalla = 13;
-			}
-
-			// btn Categorías -> Página Categorías
-			if (x > 0 && x < 325 && y > 269 && y < 333) {
-				pantalla = 14;
-			}
-
-			// btn Plan Grupal -> Página Plan Grupal
-			if (x > 0 && x < 325 && y > 333 && y < 391) {
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 4;
+			} else {
 				pantalla = 6;
 			}
 
 			break;
 
 		case 6:
-			// Acciones Página Crear Plan Grupal
-
-			// Btn Menu -> Página Menu
-			if (x > 322 && x < 394 && y > 0 && y < 82) {
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
 				pantalla = 5;
+			} else {
+				pantalla = 7;
 			}
 
 			break;
 
 		case 7:
-			// Acciones Página Preferencias 1
-
-			if (x > 0 && x < 394 && y > 628 && y < 700) {
-				escala(x, y);
-				pantalla = 9;
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 6;
+			} else {
+				pantalla = 8;
 			}
 
 			break;
 
 		case 8:
-			// Acciones Página Invitar Amigos
-
-			if (x > 77 && x < 322 && y > 563 && y < 627) {
-				pantalla = 13;
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 7;
+			} else {
+				pantalla = 9;
 			}
-
 			break;
 
 		case 9:
-			// Acciones Página Preferencias 2
-
-			if (x > 0 && x < 394 && y > 628 && y < 700) {
-				escala(x, y);
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 8;
+			} else {
 				pantalla = 10;
 			}
 
 			break;
 
 		case 10:
-			// Acciones Página Preferencias 3
 
-			if (x > 0 && x < 394 && y > 628 && y < 700) {
-				escala(x, y);
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 9;
+			} else {
 				pantalla = 11;
 			}
 
 			break;
 
 		case 11:
-			// Acciones Página Preferencias 4
-
-			if (x > 0 && x < 394 && y > 628 && y < 700) {
-				escala(x, y);
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 10;
+			} else {
 				pantalla = 12;
 			}
+
 			break;
 
 		case 12:
-			// Acciones Página Preferencias 5
-
-			// Envia a la pagina de Invitar Amigos
-			if (x > 0 && x < 394 && y > 628 && y < 700) {
-				escala(x, y);
-				pantalla = 8;
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 11;
+			} else {
+				pantalla = 13;
 			}
 
 			break;
 
 		case 13:
-			// Acciones Página Inicio
-
-			// Btn Menu -> Página Menu
-			if (x > 322 && x < 394 && y > 0 && y < 82) {
-				pantalla = 5;
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 12;
+			} else {
+				pantalla = 14;
 			}
 
 			break;
 
 		case 14:
-			// Acciones Página Categorías
-
-			// Btn Menu -> Página Menu
-			if (x > 322 && x < 394 && y > 0 && y < 82) {
-				pantalla = 5;
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 13;
+			} else {
+				pantalla = 15;
 			}
 
 			break;
 
 		case 15:
+
+			// Devolverse
+						if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+							pantalla = 14;
+						} else {
+							pantalla = 16;
+						}
+			
+			
+			
+			
+			
+			
+			break;
+
+		case 16:
+			// Devolverse
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 15;
+			} else {
+				
+				
+			}
+			
+
 			break;
 		}
 	}
-	
+
 	private void listarUsuarios(PApplet app) {
-		if(pantalla == 6){
+		if (pantalla == 6) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				usuarios.get(i).pintar(app, i, 0);
 			}
@@ -531,12 +541,12 @@ public class Logica {
 			}
 		}
 	}
-	
+
 	public void mouseClicked(int x, int y) {
 		// TODO Auto-generated method stub
-		
-		//Usuario que selecciona
-		if(pantalla == 6){
+
+		// Usuario que selecciona
+		if (pantalla == 6) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				if (usuarios.get(i).validar(x, y)) {
 					sel = usuarios.get(i);
@@ -547,16 +557,17 @@ public class Logica {
 
 	public void mouseDragged(int x, int y) {
 		// TODO Auto-generated method stub
-		
-		if(pantalla == 6){
+
+		if (pantalla == 6) {
 			for (int i = 0; i < usuarios.size(); i++) {
-				if(mY < y){
+				if (mY < y) {
 					usuarios.get(i).moverLista(-5);
-				}else if(mY > y){
+				} else if (mY > y) {
 					usuarios.get(i).moverLista(+5);
 				}
 			}
-			mX= x; mY = y;
+			mX = x;
+			mY = y;
 		}
 	}
 }
