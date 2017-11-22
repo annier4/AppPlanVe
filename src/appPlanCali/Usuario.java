@@ -12,7 +12,8 @@ public class Usuario {
 	private int h;
 	private int r,g,b;
 	private int posY, move;
-	private int iniY;
+	private int iniY, finY;
+	private int select;
 
 	public Usuario(String email, String nombre, int edad, String barrio, String likeAnimales, String likeNaturaleza, String likeHistoria, String likeCultural, String likeDeporte, String likeVerDeporte, String likeCine, String likeCocinar, String likeBeber, String likeMusica, String likeCantar, String likeMultitud) {
 		this.email = email;
@@ -46,11 +47,13 @@ public class Usuario {
 		h = 40;
 		move = 0;
 		r = 255; g = 255; b = 255;
+		select = 0;
 	}
 	
-	public void pintar(PApplet app, int i, int y){
+	public void pintar(PApplet app, int i, int y, int yF){
 		posY = i*h + y + move;
 		iniY = y;
+		finY = yF;
 		app.fill(r,g,b);
 		app.rect(0, posY, app.width, h);
 		app.fill(0);
@@ -59,9 +62,15 @@ public class Usuario {
 	
 	public boolean validar(int x, int y){
 		
-		if(y > iniY){
+		if(y > iniY && y < finY){
 			if(y > posY && y < posY+h){
-				r = 255; b = 202; g = 58;
+				if(b != 255){
+					r = 255; g = 255; b = 255;
+					select = 0;
+				}else{
+					r = 255; g = 58; b = 202;
+					select = 1;
+				}
 				return true;
 			}
 		}
@@ -91,5 +100,13 @@ public class Usuario {
 
 	public int[] getCategoriasUsu() {
 		return categoriasUsu;
+	}
+
+	public int getSelect() {
+		return select;
+	}
+
+	public void setSelect(int select) {
+		this.select = select;
 	}
 }
