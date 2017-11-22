@@ -385,6 +385,8 @@ public class Logica {
 	public void mousePressed(PApplet app, int x, int y) {
 		// TODO Auto-generated method stub
 
+		System.out.println(pantalla);
+		
 		mX = x;
 		mY = y; // Detectar coordenada inicial del mouse
 
@@ -585,15 +587,17 @@ public class Logica {
 				pantalla = 19;
 			} else if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
-				// Categorias
+				
 			} else if (x > 198 && x <= 400 && y > 505 && y < 705) {
 				// IR A PERFIL
 				pantalla = 23;
 			// PERFIL 
 			} else if (x > 0 && x < 200 && y > 505 && y < 705) {
 				pantalla = 22;
+				
+				
 			} else if (x > 198 && x < 400 && y > 310 && y < 510) {
-				pantalla = 21;
+				pantalla = 21; // top recomendados
 
 			}
 
