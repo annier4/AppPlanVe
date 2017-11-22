@@ -243,6 +243,7 @@ public class Logica {
 			} else {
 				app.image(crearplan, 0, 310);
 			}
+
 			if (app.mouseX > 0 && app.mouseX < 200 && app.mouseY > 505 && app.mouseY < 705) {
 				app.image(topics, 0, 505);
 			} else {
@@ -306,6 +307,7 @@ public class Logica {
 			}
 		} else if (pantalla == 19) {
 
+			/// CREAR PLAN 
 			app.image(cpscreen, 0, 0);
 
 			app.image(cpscreen2, 0, 600);
@@ -313,6 +315,13 @@ public class Logica {
 				app.image(results, 75, 619, 260, 70);
 			} else {
 				app.image(results, 75, 620, 257, 67);
+			}
+
+			// BUTTON MENU DESPLEGABLE
+			if (app.mouseX >= 340 && app.mouseX <= 380 && app.mouseY >= 23 && app.mouseY <= 60) {
+				app.image(iconmenu, 330, 19, 62, 46);
+			} else {
+				app.image(iconmenu, 330, 20, 59, 43);
 			}
 
 		} else if (pantalla == 20) {
@@ -323,14 +332,22 @@ public class Logica {
 			} else {
 				app.image(iconmenu, 330, 20, 59, 43);
 			}
-		}else if (pantalla == 23) { 
+		} else if (pantalla == 21) {
+
 			// BUTTON MENU DESPLEGABLE
-						if (app.mouseX > 340 && app.mouseX < 380 && app.mouseY > 23 && app.mouseY < 60) {
-							app.image(iconmenu, 330, 19, 62, 46);
-						} else {
-							app.image(iconmenu, 330, 20, 59, 43);
-						}
-			
+			if (app.mouseX >= 340 && app.mouseX <= 380 && app.mouseY >= 23 && app.mouseY <= 60) {
+				app.image(iconmenu, 330, 19, 62, 46);
+			} else {
+				app.image(iconmenu, 330, 20, 59, 43);
+			}
+		} else if (pantalla == 23) {
+			// BUTTON MENU DESPLEGABLE
+			if (app.mouseX > 340 && app.mouseX < 380 && app.mouseY > 23 && app.mouseY < 60) {
+				app.image(iconmenu, 330, 19, 62, 46);
+			} else {
+				app.image(iconmenu, 330, 20, 59, 43);
+			}
+
 		}
 
 	}
@@ -531,15 +548,23 @@ public class Logica {
 
 		case 17:
 
+			// MENU
+
 			if (x > 0 && x < 200 && y > 310 && y < 510) {
 				// ARMAR PLAN
 				pantalla = 19;
 			} else if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
-
+				// Categorias
 			} else if (x > 198 && x <= 400 && y > 505 && y < 705) {
 				// IR A PERFIL
 				pantalla = 23;
+			// PERFIL 
+			} else if (x > 0 && x < 200 && y > 505 && y < 705) {
+				pantalla = 22;
+			} else if (x > 198 && x < 400 && y > 310 && y < 510) {
+				pantalla = 21;
+
 			}
 
 			break;
@@ -548,10 +573,14 @@ public class Logica {
 
 			if (x > 340 && x < 380 && y > 23 && y < 60) {
 				pantalla = 17;
-			} else if (x > 0 && x < 323 && y > 320 && y < 380) {
+				
+				// CREAR PLAN 
+			} else if (x > 0 && x < 323 && y > 140 && y < 200) {
+				pantalla = 23;
+			} else if (x > 0 && x < 323 && y > 200 && y < 260) {
+				pantalla = 21;
+			}else if (x > 0 && x < 323 && y > 320 && y < 380) { 
 				pantalla = 19;
-			} else {
-
 			}
 
 			break;
@@ -565,6 +594,10 @@ public class Logica {
 					pantalla = 20;
 				}
 			}
+			
+			if (x > 340 && x < 380 && y > 23 && y < 60) {
+				pantalla = 18;
+			}
 
 			break;
 		case 20:
@@ -573,6 +606,14 @@ public class Logica {
 
 			if (x > 340 && x < 380 && y > 23 && y < 60) {
 				pantalla = 18;
+			}
+
+			break;
+
+		case 21:
+			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
+				pantalla = 18;
+
 			}
 
 			break;
