@@ -18,6 +18,7 @@ public class Logica {
 	private PImage crearplan, crearplans, topic, topics, topten, toptens, perfil, perfils;
 	private PImage opmenup, opmenut, opmenuc, opmenucp, opmenucc, opmenua, opmenucs, opmenups, opmenuts, opmenucsel,
 			opmenucpsel, opmenuccs, opmenuas, opmenucssel;
+	private PImage likes, likessel, friends, friendsselect,planes, planesselect; 
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
@@ -35,7 +36,7 @@ public class Logica {
 		// analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = excel.getUsuarios();
 
-		pantalla = 18;
+		pantalla = 23;
 		pantallasImg = new PImage[24];
 
 		index = 6;
@@ -117,6 +118,17 @@ public class Logica {
 
 		cpscreen = app.loadImage("../data/Recursos_Pantallas/cp_screen.jpg");
 		cpscreen2 = app.loadImage("../data/Recursos_Pantallas/cp_screen2.jpg");
+		
+		
+		// PANTALLA 23 PERFIL BOTONES 
+		
+		likes = app.loadImage("../data/Recursos_Pantallas/likes.png");
+		likessel = app.loadImage("../data/Recursos_Pantallas/likessel.png");
+		friends =  app.loadImage("../data/Recursos_Pantallas/friends.png");
+		friendsselect =  app.loadImage("../data/Recursos_Pantallas/friendsselect.png");
+		planes =  app.loadImage("../data/Recursos_Pantallas/planes.png");
+		planesselect =  app.loadImage("../data/Recursos_Pantallas/planesselect.png");
+		
 
 		// -----------------------------------------------------------------
 
@@ -347,7 +359,25 @@ public class Logica {
 			} else {
 				app.image(iconmenu, 330, 20, 59, 43);
 			}
-
+			
+			if (app.mouseX > 38 && app.mouseX< 128 && app.mouseY>302 && app.mouseY < 392 ) {
+				app.image(friendsselect, 35, 300);	
+			}else {
+				app.image(friends, 35, 300);	
+			}
+			
+			if (app.mouseX > 150 && app.mouseX< 241 && app.mouseY>302 && app.mouseY < 392 ) {
+				app.image(likessel, 150, 300);
+			}else {
+				app.image(likes, 150, 300);
+			}
+			
+			if (app.mouseX > 266 && app.mouseX< 356 && app.mouseY>302 && app.mouseY < 392 ) {
+			
+			app.image(planesselect, 265, 300);		
+			}	else {
+				app.image(planes, 265, 300);		
+			}
 		}
 
 	}
@@ -574,7 +604,7 @@ public class Logica {
 			if (x > 340 && x < 380 && y > 23 && y < 60) {
 				pantalla = 17;
 				
-				// CREAR PLAN 
+			// perfil 
 			} else if (x > 0 && x < 323 && y > 140 && y < 200) {
 				pantalla = 23;
 			} else if (x > 0 && x < 323 && y > 200 && y < 260) {
@@ -621,8 +651,14 @@ public class Logica {
 		case 23: // perfil
 			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
-
 			}
+			
+			// BOTONES ADICIONALES 
+			
+			
+			
+			
+			
 
 			break;
 
