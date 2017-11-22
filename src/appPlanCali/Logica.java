@@ -18,7 +18,7 @@ public class Logica {
 	private PImage crearplan, crearplans, topic, topics, topten, toptens, perfil, perfils;
 	private PImage opmenup, opmenut, opmenuc, opmenucp, opmenucc, opmenua, opmenucs, opmenups, opmenuts, opmenucsel,
 			opmenucpsel, opmenuccs, opmenuas, opmenucssel;
-	private PImage likes, likessel, friends, friendsselect,planes, planesselect; 
+	private PImage likes, likessel, friends, friendsselect, planes, planesselect, btn_nature, btn_natures, btn_deporte,btn_deportes, btn_cultura, btn_culturas, btn_hobbie, btn_hobbies;
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
@@ -36,8 +36,8 @@ public class Logica {
 		// analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = excel.getUsuarios();
 
-		pantalla = 23;
-		pantallasImg = new PImage[24];
+		pantalla = 18;
+		pantallasImg = new PImage[25];
 
 		index = 6;
 		name = "";
@@ -118,17 +118,26 @@ public class Logica {
 
 		cpscreen = app.loadImage("../data/Recursos_Pantallas/cp_screen.jpg");
 		cpscreen2 = app.loadImage("../data/Recursos_Pantallas/cp_screen2.jpg");
-		
-		
-		// PANTALLA 23 PERFIL BOTONES 
-		
+
+		// PANTALLA 23 PERFIL BOTONES
+
 		likes = app.loadImage("../data/Recursos_Pantallas/likes.png");
 		likessel = app.loadImage("../data/Recursos_Pantallas/likessel.png");
-		friends =  app.loadImage("../data/Recursos_Pantallas/friends.png");
-		friendsselect =  app.loadImage("../data/Recursos_Pantallas/friendsselect.png");
-		planes =  app.loadImage("../data/Recursos_Pantallas/planes.png");
-		planesselect =  app.loadImage("../data/Recursos_Pantallas/planesselect.png");
+		friends = app.loadImage("../data/Recursos_Pantallas/friends.png");
+		friendsselect = app.loadImage("../data/Recursos_Pantallas/friendsselect.png");
+		planes = app.loadImage("../data/Recursos_Pantallas/planes.png");
+		planesselect = app.loadImage("../data/Recursos_Pantallas/planesselect.png");
 		
+		// PANTALLA 24 PERFIL BOTONES
+		
+		btn_nature = app.loadImage("../data/Recursos_Pantallas/btn_nature.png");
+		btn_natures = app.loadImage("../data/Recursos_Pantallas/btn_natures.png");
+		btn_cultura = app.loadImage("../data/Recursos_Pantallas/btn_culture.png");
+		btn_culturas = app.loadImage("../data/Recursos_Pantallas/btn_cultures.png");
+		btn_hobbie =  app.loadImage("../data/Recursos_Pantallas/btn_hobbie.png");
+		btn_hobbies =  app.loadImage("../data/Recursos_Pantallas/btn_hobbies.png");
+		btn_deporte =  app.loadImage("../data/Recursos_Pantallas/btn_deporte.png");
+		btn_deportes =  app.loadImage("../data/Recursos_Pantallas/btn_deportes.png");
 
 		// -----------------------------------------------------------------
 
@@ -319,7 +328,7 @@ public class Logica {
 			}
 		} else if (pantalla == 19) {
 
-			/// CREAR PLAN 
+			/// CREAR PLAN
 			app.image(cpscreen, 0, 0);
 
 			app.image(cpscreen2, 0, 600);
@@ -359,25 +368,38 @@ public class Logica {
 			} else {
 				app.image(iconmenu, 330, 20, 59, 43);
 			}
-			
-			if (app.mouseX > 38 && app.mouseX< 128 && app.mouseY>302 && app.mouseY < 392 ) {
-				app.image(friendsselect, 35, 300);	
-			}else {
-				app.image(friends, 35, 300);	
+
+			if (app.mouseX > 38 && app.mouseX < 128 && app.mouseY > 302 && app.mouseY < 392) {
+				app.image(friendsselect, 35, 300);
+			} else {
+				app.image(friends, 35, 300);
 			}
-			
-			if (app.mouseX > 150 && app.mouseX< 241 && app.mouseY>302 && app.mouseY < 392 ) {
+
+			if (app.mouseX > 150 && app.mouseX < 241 && app.mouseY > 302 && app.mouseY < 392) {
 				app.image(likessel, 150, 300);
-			}else {
+			} else {
 				app.image(likes, 150, 300);
 			}
-			
-			if (app.mouseX > 266 && app.mouseX< 356 && app.mouseY>302 && app.mouseY < 392 ) {
-			
-			app.image(planesselect, 265, 300);		
-			}	else {
-				app.image(planes, 265, 300);		
+
+			if (app.mouseX > 266 && app.mouseX < 356 && app.mouseY > 302 && app.mouseY < 392) {
+
+				app.image(planesselect, 265, 300);
+			} else {
+				app.image(planes, 265, 300);
 			}
+		} else if (pantalla == 24) {
+
+			// BUTTON MENU DESPLEGABLE
+			if (app.mouseX > 340 && app.mouseX < 380 && app.mouseY > 23 && app.mouseY < 60) {
+				app.image(iconmenu, 330, 19, 62, 46);
+			} else {
+				app.image(iconmenu, 330, 20, 59, 43);
+			}
+			
+			
+			//app.image(btn_nature, 0, 300);
+			
+
 		}
 
 	}
@@ -386,7 +408,7 @@ public class Logica {
 		// TODO Auto-generated method stub
 
 		System.out.println(pantalla);
-		
+
 		mX = x;
 		mY = y; // Detectar coordenada inicial del mouse
 
@@ -587,15 +609,15 @@ public class Logica {
 				pantalla = 19;
 			} else if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
-				
+
 			} else if (x > 198 && x <= 400 && y > 505 && y < 705) {
 				// IR A PERFIL
 				pantalla = 23;
-			// PERFIL 
+				// PERFIL
 			} else if (x > 0 && x < 200 && y > 505 && y < 705) {
-				pantalla = 22;
-				
-				
+
+				pantalla = 24; // CATEGORIAS
+
 			} else if (x > 198 && x < 400 && y > 310 && y < 510) {
 				pantalla = 21; // top recomendados
 
@@ -607,13 +629,16 @@ public class Logica {
 
 			if (x > 340 && x < 380 && y > 23 && y < 60) {
 				pantalla = 17;
-				
-			// perfil 
+
+				// perfil
 			} else if (x > 0 && x < 323 && y > 140 && y < 200) {
 				pantalla = 23;
 			} else if (x > 0 && x < 323 && y > 200 && y < 260) {
 				pantalla = 21;
-			}else if (x > 0 && x < 323 && y > 320 && y < 380) { 
+			} else if (x > 0 && x < 323 && y > 260 && y < 320) {
+				pantalla = 24;
+
+			} else if (x > 0 && x < 323 && y > 320 && y < 380) {
 				pantalla = 19;
 			}
 
@@ -628,7 +653,7 @@ public class Logica {
 					pantalla = 20;
 				}
 			}
-			
+
 			if (x > 340 && x < 380 && y > 23 && y < 60) {
 				pantalla = 18;
 			}
@@ -656,14 +681,16 @@ public class Logica {
 			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
 			}
-			
-			// BOTONES ADICIONALES 
-			
-			
-			
-			
-			
 
+			// BOTONES ADICIONALES
+
+			break;
+
+		case 24:
+			// boton menu
+			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
+				pantalla = 18;
+			}
 			break;
 
 		}
