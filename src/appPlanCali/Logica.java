@@ -14,8 +14,10 @@ public class Logica {
 	private PImage iniS, iniS2, reg, reg2, quit;
 	private PImage back, entrar, noacount, ask, back1;
 	private PImage regback, photo, finish;
-	private PImage instrucciones, next, volver, startnow, iconmenu;
+	private PImage instrucciones, next, volver, startnow, iconmenu, iconmenun, cpscreen, cpscreen2;
 	private PImage crearplan, crearplans, topic, topics, topten, toptens, perfil, perfils;
+	private PImage opmenup, opmenut, opmenuc, opmenucp, opmenucc, opmenua, opmenucs, opmenups, opmenuts, opmenucsel,
+			opmenucpsel, opmenuccs, opmenuas, opmenucssel;
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
@@ -30,8 +32,8 @@ public class Logica {
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = analisis.getUsuarios();
 
-		pantalla = 17;
-		pantallasImg = new PImage[18];
+		pantalla = 19;
+		pantallasImg = new PImage[20];
 		index = 6;
 		name = "";
 		user = "";
@@ -75,6 +77,7 @@ public class Logica {
 
 		startnow = app.loadImage("../data/Recursos_Pantallas/startnow.png");
 		iconmenu = app.loadImage("../data/Recursos_Pantallas/Icon_menu.png");
+		iconmenun = app.loadImage("../data/Recursos_Pantallas/iconmenun.png");
 
 		// pantalla 17 inicio
 
@@ -87,10 +90,37 @@ public class Logica {
 		perfil = app.loadImage("../data/Recursos_Pantallas/perfil.png");
 		perfils = app.loadImage("../data/Recursos_Pantallas/perfils.png");
 
+		// pantalla 17 inicio
+
+		opmenup = app.loadImage("../data/Recursos_Pantallas/opmenup.png");
+		opmenucp = app.loadImage("../data/Recursos_Pantallas/opmenucp.png");
+		opmenuc = app.loadImage("../data/Recursos_Pantallas/opmenuc.png");
+		opmenucc = app.loadImage("../data/Recursos_Pantallas/opmenucc.png");
+		opmenut = app.loadImage("../data/Recursos_Pantallas/opmenut.png");
+		opmenua = app.loadImage("../data/Recursos_Pantallas/opmenua.png");
+		opmenucs = app.loadImage("../data/Recursos_Pantallas/opmenucs.png");
+
+		opmenups = app.loadImage("../data/Recursos_Pantallas/opmenups.png");
+		opmenuts = app.loadImage("../data/Recursos_Pantallas/opmenuts.png");
+		opmenucsel = app.loadImage("../data/Recursos_Pantallas/opmenucsel.png");
+		opmenucpsel = app.loadImage("../data/Recursos_Pantallas/opmenucpsel.png");
+		opmenuccs = app.loadImage("../data/Recursos_Pantallas/opmenuccs.png");
+		opmenuas = app.loadImage("../data/Recursos_Pantallas/opmenuas.png");
+		opmenucssel = app.loadImage("../data/Recursos_Pantallas/opmenucssel.png");
+		
+		
+		// pantalla 19 crear plan
+		
+		cpscreen = app.loadImage("../data/Recursos_Pantallas/cp_screen.jpg"); 
+		cpscreen2 = app.loadImage("../data/Recursos_Pantallas/cp_screen2.jpg"); 
+
 		// -----------------------------------------------------------------
 
+		
+		
+		
 		for (int i = 0; i < pantallasImg.length; i++) {
-			if (i < 18) {
+			if (i < 19) {
 				pantallasImg[i] = app.loadImage("../data/p-0" + (i + 1) + ".jpg");
 			} else {
 				pantallasImg[i] = app.loadImage("../data/p-" + (i + 1) + ".jpg");
@@ -199,35 +229,84 @@ public class Logica {
 		} else if (pantalla == 17) {
 
 			// BUTTON MENU DESPLEGABLE
-			if (app.mouseX >= 320 && app.mouseX <= 380 && app.mouseY >= 20 && app.mouseY <= 63) {
-				app.image(iconmenu, 320, 19, 62, 46);
+			if (app.mouseX >= 340 && app.mouseX <= 380 && app.mouseY >= 23 && app.mouseY <= 60) {
+				app.image(iconmenu, 330, 19, 62, 46);
 			} else {
-				app.image(iconmenu, 320, 20, 59, 43);
+				app.image(iconmenu, 330, 20, 59, 43);
 			}
 
 			// BOTONES PRINCIPALES
-			if (app.mouseX > 0 && app.mouseX < 200 && app.mouseY >= 310 && app.mouseY < 510) {
+			if (app.mouseX > 0 && app.mouseX < 200 && app.mouseY > 310 && app.mouseY < 510) {
 				app.image(crearplans, 0, 310);
 			} else {
 				app.image(crearplan, 0, 310);
 			}
 			if (app.mouseX > 0 && app.mouseX < 200 && app.mouseY > 505 && app.mouseY < 705) {
-			app.image(topics, 0, 505);
-			}else {
+				app.image(topics, 0, 505);
+			} else {
 				app.image(topic, 0, 505);
 			}
-			if (app.mouseX > 198 && app.mouseX < 400 && app.mouseY >= 310 && app.mouseY < 510) {
-			app.image(toptens, 198, 310);
-		}else {
-			app.image(topten, 198, 310);	
-		}
-			
+			if (app.mouseX > 198 && app.mouseX < 400 && app.mouseY > 310 && app.mouseY < 510) {
+				app.image(toptens, 198, 310);
+			} else {
+				app.image(topten, 198, 310);
+			}
+
 			if (app.mouseX > 198 && app.mouseX <= 400 && app.mouseY > 505 && app.mouseY < 705) {
 				app.image(perfils, 198, 505);
-				}else {
-					app.image(perfil, 198, 505);
-				}
+			} else {
+				app.image(perfil, 198, 505);
+			}
+
+		} else if (pantalla == 18) {
+
+			// BUTTON MENU DESPLEGABLE
+			if (app.mouseX > 340 && app.mouseX < 380 && app.mouseY > 23 && app.mouseY < 60) {
+				app.image(iconmenun, 330, 19, 62, 46);
+			} else {
+				app.image(iconmenun, 330, 20, 59, 43);
+			}
+
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 140 && app.mouseY < 200) {
+				app.image(opmenups, -3, 140);
+			} else {
+				app.image(opmenup, -3, 140);
+			}
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 200 && app.mouseY < 260) {
+				app.image(opmenuts, -3, 200);
+			} else {
+				app.image(opmenut, -3, 200);
+			}
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 260 && app.mouseY < 320) {
+				app.image(opmenucsel, -3, 260);
+			} else {
+				app.image(opmenuc, -3, 260);
+			}
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 320 && app.mouseY < 380) {
+				app.image(opmenucpsel, -3, 320);
+			} else {
+				app.image(opmenucp, -3, 320);
+			}
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 380 && app.mouseY < 440) {
+			app.image(opmenuccs, -3, 380);
+			}else {
+				app.image(opmenucc, -3, 380);
+			}
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 440 && app.mouseY < 500) {
+			app.image(opmenuas, -3, 440);
+			}else {
+				app.image(opmenua, -3, 440);	
+			}
+			if (app.mouseX > 0 && app.mouseX < 323 && app.mouseY > 620 && app.mouseY < 680) {
+			app.image(opmenucssel, -3, 620);
+			}else {
+				app.image(opmenucs, -3, 620);
+			}
+		}else if (pantalla == 19){
 			
+			app.image(cpscreen, 0, 0);
+			
+			app.image(cpscreen2, 0, 600);
 		}
 
 	}
@@ -427,7 +506,7 @@ public class Logica {
 			break;
 
 		case 17:
-			
+
 			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
 				pantalla = 18;
 			}
@@ -436,10 +515,20 @@ public class Logica {
 
 		case 18:
 
+			if (x > 340 && x < 380 && y > 23 && y < 60) {
+				pantalla = 17;
+			} else if (x > 0 && x < 323 && y > 140 && y < 200) {
+				pantalla = 19;
+			} else {
 
-			pantalla = 17;
-			
+			}
+
 			break;
+
+		case 19:
+
+			break;
+
 		}
 	}
 
