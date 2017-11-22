@@ -313,15 +313,6 @@ public class Logica {
 			
 			app.image(cpscreen2, 0, 600);
 
-		}else if (pantalla == 6){
-			
-			// BOTON PARA HACER ANALISIS AL DAR CLICK -- Y PASAR A PANTALLA DE RESULTADOS
-			if (app.mouseX >= 70 && app.mouseX <= 332 && app.mouseY >= 500 && app.mouseY <= 573) {
-				app.image(entrar, 69, 498, 265, 78);
-			} else {
-				app.image(entrar, 70, 500, 262, 73);
-			}
-
 		}
 
 	}
@@ -420,13 +411,6 @@ public class Logica {
 				pantalla = 5;
 			} else {
 				pantalla = 7;
-			}
-			
-			// btn Analisis Plan Grupal
-			if (x >= 70 && x <= 332 && y >= 500 && y <= 573) {
-				if(selUsu.size() != 0){
-					analisisGrupal = new Analisis(excel.getLugares(), selUsu);
-				}
 			}
 
 			break;
@@ -548,6 +532,13 @@ public class Logica {
 			break;
 
 		case 19:
+			
+			// btn Analisis Plan Grupal
+			if (x >= 70 && x <= 332 && y >= 500 && y <= 573) {
+				if(selUsu.size() != 0){
+					analisisGrupal = new Analisis(excel.getLugares(), selUsu);
+				}
+			}
 
 			break;
 
@@ -555,7 +546,7 @@ public class Logica {
 	}
 
 	private void listarUsuarios(PApplet app) {
-		if (pantalla == 6) {
+		if (pantalla == 19) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				usuarios.get(i).pintar(app, i, 0, 450);
 			}
@@ -716,7 +707,7 @@ public class Logica {
 		// TODO Auto-generated method stub
 
 		// Usuario que selecciona
-		if (pantalla == 6) {
+		if (pantalla == 19) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				if (usuarios.get(i).validar(x, y)) {
 					if(usuarios.get(i).getSelect() == 1){
@@ -736,7 +727,7 @@ public class Logica {
 	public void mouseDragged(int x, int y) {
 		// TODO Auto-generated method stub
 
-		if (pantalla == 6) {
+		if (pantalla == 19) {
 			for (int i = 0; i < usuarios.size(); i++) {
 				if (mY < y) {
 					usuarios.get(i).moverLista(-5);
