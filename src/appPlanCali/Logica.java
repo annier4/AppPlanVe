@@ -14,8 +14,8 @@ public class Logica {
 	private PImage iniS, iniS2, reg, reg2, quit;
 	private PImage back, entrar, noacount, ask, back1;
 	private PImage regback, photo, finish;
-	private PImage instrucciones, next, volver;
-
+	private PImage instrucciones, next, volver, startnow, iconmenu;
+	private PImage crearplan, crearplans, topic, topics, topten, toptens, perfil, perfils;
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
@@ -30,8 +30,8 @@ public class Logica {
 		analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = analisis.getUsuarios();
 
-		pantalla = 0;
-		pantallasImg = new PImage[17];
+		pantalla = 17;
+		pantallasImg = new PImage[18];
 		index = 6;
 		name = "";
 		user = "";
@@ -70,6 +70,22 @@ public class Logica {
 		// pantalla 4 test
 
 		volver = app.loadImage("../data/Recursos_Pantallas/volver.png");
+
+		// pantalla 16
+
+		startnow = app.loadImage("../data/Recursos_Pantallas/startnow.png");
+		iconmenu = app.loadImage("../data/Recursos_Pantallas/Icon_menu.png");
+
+		// pantalla 17 inicio
+
+		crearplan = app.loadImage("../data/Recursos_Pantallas/crearplan.png");
+		crearplans = app.loadImage("../data/Recursos_Pantallas/crearplans.png");
+		topic = app.loadImage("../data/Recursos_Pantallas/topic.png");
+		topics = app.loadImage("../data/Recursos_Pantallas/topics.png");
+		topten = app.loadImage("../data/Recursos_Pantallas/topten.png");
+		toptens = app.loadImage("../data/Recursos_Pantallas/toptens.png");
+		perfil = app.loadImage("../data/Recursos_Pantallas/perfil.png");
+		perfils = app.loadImage("../data/Recursos_Pantallas/perfils.png");
 
 		// -----------------------------------------------------------------
 
@@ -163,7 +179,7 @@ public class Logica {
 				app.image(next, 60, 610, 270, 75);
 			}
 
-		} else if (pantalla > 3 && pantalla < 17) {
+		} else if (pantalla > 3 && pantalla < 16) {
 
 			// BOTON PARA DEVOLVERSE
 			if (app.mouseX >= 45 && app.mouseX <= 394 && app.mouseY >= 20 && app.mouseY <= 60) {
@@ -172,6 +188,46 @@ public class Logica {
 				app.image(volver, 45, 20);
 			}
 
+		} else if (pantalla == 16) {
+
+			if (app.mouseX >= 60 && app.mouseX <= 341 && app.mouseY >= 550 && app.mouseY <= 632) {
+				app.image(startnow, 60, 549, 283, 85);
+			} else {
+				app.image(startnow, 60, 550);
+			}
+
+		} else if (pantalla == 17) {
+
+			// BUTTON MENU DESPLEGABLE
+			if (app.mouseX >= 320 && app.mouseX <= 380 && app.mouseY >= 20 && app.mouseY <= 63) {
+				app.image(iconmenu, 320, 19, 62, 46);
+			} else {
+				app.image(iconmenu, 320, 20, 59, 43);
+			}
+
+			// BOTONES PRINCIPALES
+			if (app.mouseX > 0 && app.mouseX < 200 && app.mouseY >= 310 && app.mouseY < 510) {
+				app.image(crearplans, 0, 310);
+			} else {
+				app.image(crearplan, 0, 310);
+			}
+			if (app.mouseX > 0 && app.mouseX < 200 && app.mouseY > 505 && app.mouseY < 705) {
+			app.image(topics, 0, 505);
+			}else {
+				app.image(topic, 0, 505);
+			}
+			if (app.mouseX > 198 && app.mouseX < 400 && app.mouseY >= 310 && app.mouseY < 510) {
+			app.image(toptens, 198, 310);
+		}else {
+			app.image(topten, 198, 310);	
+		}
+			
+			if (app.mouseX > 198 && app.mouseX <= 400 && app.mouseY > 505 && app.mouseY < 705) {
+				app.image(perfils, 198, 505);
+				}else {
+					app.image(perfil, 198, 505);
+				}
+			
 		}
 
 	}
@@ -357,29 +413,32 @@ public class Logica {
 		case 15:
 
 			// Devolverse
-						if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
-							pantalla = 14;
-						} else {
-							pantalla = 16;
-						}
-			
-			
-			
-			
-			
-			
+			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
+				pantalla = 14;
+			} else {
+				pantalla = 16;
+			}
+
 			break;
 
 		case 16:
-			// Devolverse
-			if (x >= 45 && x <= 394 && y >= 20 && y <= 60) {
-				pantalla = 15;
-			} else {
-				
-				
-			}
-			
 
+			pantalla = 17;
+			break;
+
+		case 17:
+			
+			if (x >= 320 && x <= 380 && y >= 20 && y <= 63) {
+				pantalla = 18;
+			}
+
+			break;
+
+		case 18:
+
+
+			pantalla = 17;
+			
 			break;
 		}
 	}
