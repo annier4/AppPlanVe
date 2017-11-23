@@ -23,6 +23,8 @@ public class Usuario {
 		categoriasUsu = new int[12];
 		String[] categorias = new String[12];
 		
+		System.out.println(nombre);
+		
 		categorias[0] = likeAnimales;
 		categorias[1] = likeNaturaleza;
 		categorias[2] = likeHistoria;
@@ -108,5 +110,29 @@ public class Usuario {
 
 	public void setSelect(int select) {
 		this.select = select;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+	public int getIniY() {
+		return iniY;
+	}
+
+	public void setIniY(int iniY) {
+		this.iniY = iniY;
+	}
+
+	public int getFinY() {
+		return finY;
+	}
+
+	public void setFinY(int finY) {
+		this.finY = finY;
 	}
 }

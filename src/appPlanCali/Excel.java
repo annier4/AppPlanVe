@@ -77,8 +77,8 @@ public class Excel {
 		NumberCell numero;
 		LabelCell texto;
 
-		ArrayList<String> info_txt = new ArrayList<>(4);
-		ArrayList<Integer> info_num = new ArrayList<>(3);
+		ArrayList<String> info_txt = new ArrayList<>(5);
+		ArrayList<Integer> info_num = new ArrayList<>(2);
 
 		for (int j = 1; j < st_lugar.getRows(); j++) {// Lugar
 			for (int i = 0; i < st_lugar.getColumns(); i++) {// info
@@ -99,8 +99,21 @@ public class Excel {
 			} // columnas
 
 			if (!info_txt.isEmpty() && !info_num.isEmpty()) {
+				/*System.out.println("<-------------------------- text --------------------->");
+				for (int i = 0; i < info_txt.size(); i++) {
+					System.out.println(i+": (" +info_txt.get(i) + ")");
+				}
+				System.out.println("<-------------------------- text --------------------->");
+				System.out.println("<-------------------------- num --------------------->");
+				for (int i = 0; i < info_num.size(); i++) {
+					System.out.println(i+": (" +info_num.get(i) + ")");
+				}
+				System.out.println("<-------------------------- num --------------------->");*/
+				
+				
+				
 				Lugar rs_actual = new Lugar(info_txt.get(0), info_txt.get(1), info_txt.get(2),
-						info_txt.get(3), info_num.get(0), info_txt.get(4), info_num.get(1), info_txt.get(5));
+						info_txt.get(3), info_num.get(0), info_txt.get(4), info_num.get(1));
 				lugares.add(rs_actual);
 			}
 
@@ -117,8 +130,8 @@ public class Excel {
 		NumberCell numero;
 		LabelCell texto;
 
-		ArrayList<String> info_txt = new ArrayList<>(4);
-		ArrayList<Integer> info_num = new ArrayList<>(3);
+		ArrayList<String> info_txt = new ArrayList<>();
+		ArrayList<Integer> info_num = new ArrayList<>();
 
 		for (int j = 1; j < st_resp.getRows(); j++) {// lugar
 			for (int i = 0; i < st_resp.getColumns(); i++) {// info
@@ -140,8 +153,8 @@ public class Excel {
 			
 
 			if (!info_txt.isEmpty() && !info_num.isEmpty()) {
-				Usuario usuario_actual = new Usuario(info_txt.get(0), info_txt.get(1), info_num.get(0), info_txt.get(2),
-						info_txt.get(3), info_txt.get(4), info_txt.get(5), info_txt.get(6), info_txt.get(7), info_txt.get(8), info_txt.get(9), info_txt.get(10), info_txt.get(11), info_txt.get(12), info_txt.get(13), info_txt.get(14));
+				Usuario usuario_actual = new Usuario(info_txt.get(0), info_txt.get(1), info_num.get(0), info_txt.get(3),
+						info_txt.get(4), info_txt.get(5), info_txt.get(6), info_txt.get(7), info_txt.get(8), info_txt.get(9), info_txt.get(10), info_txt.get(11), info_txt.get(12), info_txt.get(13), info_txt.get(14), info_txt.get(15));
 				usu.add(usuario_actual);
 			}
 

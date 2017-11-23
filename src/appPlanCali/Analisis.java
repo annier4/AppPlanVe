@@ -6,12 +6,13 @@ public class Analisis {
 	
 	private ArrayList<Lugar> lugares;
 	private ArrayList<Usuario> usuarios;
+	private int presupuesto;
 	private Conteo contador;
 
-	public Analisis(ArrayList<Lugar> lugares, ArrayList<Usuario> usuarios) {
+	public Analisis(ArrayList<Lugar> lugares, ArrayList<Usuario> usuarios, int presupuesto) {
 		this.lugares = (ArrayList<Lugar>) lugares.clone();
 		this.usuarios = (ArrayList<Usuario>) usuarios.clone();
-		
+		this.presupuesto = presupuesto;
 		contador = new Conteo();
 		
 		System.out.println("\n\n\n\n\n\n");
@@ -45,68 +46,147 @@ public class Analisis {
 		for (int i = 0; i < lugares.size(); i++) {
 			String[] parts = lugares.get(i).getCategorias().split(", ");
 			
-			if(ubicacion.contains(lugares.get(i).getBarrio())){
-				lugares.get(i).sumarPuntaje(1);
+			
+			System.out.println("NOMBRE LUGAR: "+ lugares.get(i).getNombre()+ "-----------------------------");
+			
+			System.out.println("UBICACION USUARIO: "+ ubicacion);
+			
+			if(presupuesto >= lugares.get(i).getPrecio()){
+				lugares.get(i).sumarPuntaje(2);
+				System.out.println("PRESUPUESTO: "+presupuesto);
+				System.out.println("PRECIO: "+lugares.get(i).getPrecio());
+				System.out.println("precio" + 2);
+			}else{
+				lugares.get(i).sumarPuntaje(-5);
+				System.out.println("PRESUPUESTO: "+presupuesto);
+				System.out.println("PRECIO: "+lugares.get(i).getPrecio());
+				System.out.println("precio" + -5);
 			}
+			
+			
+			System.out.println("ZONA: "+lugares.get(i).getZona());
+			
+			
+			if(ubicacion.contains(lugares.get(i).getBarrio())){
+				lugares.get(i).sumarPuntaje(5);
+				System.out.println("barrio" + 5);
+			}else if(ubicacion.contains(lugares.get(i).getZona()) || ubicacion.contains("Centro")){
+				lugares.get(i).sumarPuntaje(2);
+				System.out.println("zona" + 2);
+			}
+			
+			System.out.println("<---------------- puntaje categorias ------------->");
 			
 			for (int j = 0; j < parts.length; j++) {
 				
 				if(parts[j].contains("animales")){
-					lugares.get(i).sumarPuntaje(categorias[0]);
+					if(categorias[0] != 0){
+						lugares.get(i).sumarPuntaje(categorias[0]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("animales" + categorias[0]);
 				}
 				
 				if(parts[j].contains("naturaleza")){
-					lugares.get(i).sumarPuntaje(categorias[1]);
+					if(categorias[1] != 0){
+						lugares.get(i).sumarPuntaje(categorias[1]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					
+					System.out.println("naturaleza" + categorias[1]);
 				}
 				
 				if(parts[j].contains("historia")){
-					lugares.get(i).sumarPuntaje(categorias[2]);
+					if(categorias[2] != 0){
+						lugares.get(i).sumarPuntaje(categorias[2]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("historia" + categorias[2]);
 				}
 				
 				if(parts[j].contains("evento cultural")){
-					lugares.get(i).sumarPuntaje(categorias[3]);
+					if(categorias[3] != 0){
+						lugares.get(i).sumarPuntaje(categorias[3]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("evento cultural" + categorias[3]);
 				}
 				
 				if(parts[j].contains("deporte")){
-					lugares.get(i).sumarPuntaje(categorias[4]);
+					if(categorias[4] != 0){
+						lugares.get(i).sumarPuntaje(categorias[4]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("deporte" + categorias[4]);
 				}
 				
-				if(parts[j].contains("ver deporte")){
-					lugares.get(i).sumarPuntaje(categorias[5]);
+				if(parts[j].contains("ver deport")){
+					if(categorias[5] != 0){
+						lugares.get(i).sumarPuntaje(categorias[5]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("ver deport" + categorias[5]);
 				}
 				
 				if(parts[j].contains("cine")){
-					lugares.get(i).sumarPuntaje(categorias[6]);
+					if(categorias[6] != 0){
+						lugares.get(i).sumarPuntaje(categorias[6]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("cine" + categorias[6]);
 				}
 				
 				if(parts[j].contains("restaurante") || parts[j].contains("evento cocina")){
 					if(categorias[7] > 2 && parts[j].contains("restaurante")){
 						lugares.get(i).sumarPuntaje(categorias[7]);
+						System.out.println("restaurante o evento cocina" + categorias[7]);
 					}else{
 						lugares.get(i).sumarPuntaje(categorias[7]);
 					}
 				}
 				
 				if(parts[j].contains("bar")){
-					lugares.get(i).sumarPuntaje(categorias[8]);
+					if(categorias[8] != 0){
+						lugares.get(i).sumarPuntaje(categorias[8]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("bar" + categorias[8]);
 				}
 				
 				if(parts[j].contains("musica")){
-					lugares.get(i).sumarPuntaje(categorias[9]);
+					if(categorias[9] != 0){
+						lugares.get(i).sumarPuntaje(categorias[9]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("musica" + categorias[9]);
 				}
 				
 				if(parts[j].contains("cantar")){
-					lugares.get(i).sumarPuntaje(categorias[10]);
+					if(categorias[10] != 0){
+						lugares.get(i).sumarPuntaje(categorias[10]);
+					}else{
+						lugares.get(i).sumarPuntaje(-5);
+					}
+					System.out.println("musica" + categorias[10]);
 				}
 				
-				if(categorias[11] > 1){
+				if(categorias[11] > 1 && lugares.get(i).getConcurrencia() < 200){
 					lugares.get(i).sumarPuntaje(categorias[11]);
-				}else if(lugares.get(i).getConcurrencia() < 150 && categorias[11] == 1){
-					lugares.get(i).sumarPuntaje(categorias[11]);
-				}else if(lugares.get(i).getConcurrencia() < 100 && categorias[11] == 0){
-					lugares.get(i).sumarPuntaje(1);
+					System.out.println("concurrencia MAYOR A 1 = " + categorias[11]);
 				}
+				
 			}
+			
+			System.out.println("<---------------- fin puntaje categorias ------------->");
 			
 		}
 		

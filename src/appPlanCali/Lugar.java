@@ -10,24 +10,27 @@ public class Lugar {
 	private String categorias;
 	private String descripcion;
 	private String barrio;
+	private String zona;
 	private int precio;
 	private String horaConcurrencia;
 	private int concurrencia;
-	private String web;
 	
 	private String info_txt;
 	
 	private ArrayList<Object> info;
 
-	public Lugar( String nombre, String categorias, String descripcion, String barrio, int precio, String horaConcurrencia, int concurrencia, String web) {
+	public Lugar( String nombre, String categorias, String descripcion, String barrio, int precio, String horaConcurrencia, int concurrencia) {
 		this.nombre = nombre;
 		this.categorias = categorias;
 		this.descripcion = descripcion;
-		this.barrio = barrio;
+		
+		String[] ubicacion = barrio.split(", ");
+		
+		this.barrio = ubicacion[0];
+		this.zona = ubicacion[1];
 		this.precio = precio;
 		this.horaConcurrencia = horaConcurrencia;
 		this.concurrencia = concurrencia;
-		this.web = web;
 		puntaje = 0;
 		
 		info = new ArrayList<>();
@@ -37,7 +40,6 @@ public class Lugar {
 		info.add(barrio);
 		info.add(precio);
 		info.add(horaConcurrencia);
-		info.add(web);
 		
 	}
 
@@ -57,6 +59,10 @@ public class Lugar {
 		return barrio;
 	}
 
+	public String getZona() {
+		return zona;
+	}
+
 	public int getPrecio() {
 		return precio;
 	}
@@ -67,10 +73,6 @@ public class Lugar {
 
 	public int getConcurrencia() {
 		return concurrencia;
-	}
-
-	public String getWeb() {
-		return web;
 	}
 	
 	public void imprimir_info() {

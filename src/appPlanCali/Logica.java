@@ -19,7 +19,7 @@ public class Logica {
 	private PImage opmenup, opmenut, opmenuc, opmenucp, opmenucc, opmenua, opmenucs, opmenups, opmenuts, opmenucsel,
 			opmenucpsel, opmenuccs, opmenuas, opmenucssel;
 	private int index;
-	private String name, user, email, pass, adress;
+	private String name, user, email, pass, adress, presupuesto;
 	private Analisis analisis;
 	private Analisis analisisGrupal;
 	private Carita caritas;
@@ -44,6 +44,7 @@ public class Logica {
 		email = "";
 		pass = "";
 		adress = "";
+		presupuesto = "0";
 		selUsu = new ArrayList<Usuario>();
 
 		// CARGAR BOTONES
@@ -305,10 +306,11 @@ public class Logica {
 				app.image(opmenucs, -3, 620);
 			}
 		} else if (pantalla == 19) {
-
+			
 			app.image(cpscreen, 0, 0);
-
 			app.image(cpscreen2, 0, 600);
+			app.text(presupuesto, 52, 175);
+			
 		if (app.mouseX >82 && app.mouseX <638 && app.mouseY > 623 && app.mouseY < 685 ) {
 			app.image(results, 75, 619, 260, 70);
 		} else {
@@ -534,23 +536,34 @@ public class Logica {
 			break;
 
 		case 19:
-
+			
 			// btn Analisis Plan Grupal
-			if (x >= 70 && x <= 332 && y >= 500 && y <= 573) {
+			if (x >= 82 && x <= 638 && y >= 623 && y <= 685) {
 				if (selUsu.size() != 0) {
-					analisisGrupal = new Analisis(excel.getLugares(), selUsu);
+					int precio = app.parseInt(presupuesto);
+					analisisGrupal = new Analisis(excel.getLugares(), selUsu, precio);
+					pantalla = 20;
 				}
 			}
-
+			
+			// zona activa input Presupuesto
+			if (x >= 35 && x <= 368 && y >= 152 && y <= 192) {
+				index = 5;
+			}
+			
 			break;
 
+		case 20:
+			
+			break;
+		
 		}
 	}
 
 	private void listarUsuarios(PApplet app) {
 		if (pantalla == 19) {
 			for (int i = 0; i < usuarios.size(); i++) {
-				usuarios.get(i).pintar(app, i, 0, 450);
+				usuarios.get(i).pintar(app, i, 255, 600);
 			}
 		}
 	}
@@ -639,7 +652,7 @@ public class Logica {
 
 	public void keyPressed(PApplet app) {
 		// TODO Auto-generated method stub
-		if (index != 6 && pantalla == 2) {
+		if (index != 6 && (pantalla == 2 || pantalla == 19)) {
 
 			switch (index) {
 			case 0:
@@ -701,6 +714,18 @@ public class Logica {
 				}
 
 				break;
+				
+			case 5:
+				
+				if (app.keyCode == PConstants.BACKSPACE) {
+					if (presupuesto.length() > 0) {
+						presupuesto = presupuesto.substring(0, presupuesto.length() - 1);
+					}
+				} else {
+					presupuesto += app.key;
+				}
+				
+				break;
 			}
 		}
 	}
@@ -731,9 +756,11 @@ public class Logica {
 
 		if (pantalla == 19) {
 			for (int i = 0; i < usuarios.size(); i++) {
-				if (mY < y) {
+				Usuario first = usuarios.get(0);
+				Usuario last = usuarios.get(usuarios.size()-1);
+				if (mY < y && last.getPosY() > 600 - ((usuarios.size()-28)*40)) {
 					usuarios.get(i).moverLista(-5);
-				} else if (mY > y) {
+				} else if (mY > y && first.getPosY() < 250) {
 					usuarios.get(i).moverLista(+5);
 				}
 			}
