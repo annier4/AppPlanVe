@@ -18,7 +18,7 @@ public class Logica {
 	private PImage crearplan, crearplans, topic, topics, topten, toptens, perfil, perfils;
 	private PImage opmenup, opmenut, opmenuc, opmenucp, opmenucc, opmenua, opmenucs, opmenups, opmenuts, opmenucsel,
 			opmenucpsel, opmenuccs, opmenuas, opmenucssel;
-	private PImage likes, likessel, friends, friendsselect, planes, planesselect, btn_nature, btn_natures, btn_deporte,btn_deportes, btn_cultura, btn_culturas, btn_hobbie, btn_hobbies;
+	private PImage likes, likessel, friends, friendsselect, planes, planesselect, btn_nature, btn_natures, btn_deporte,btn_deportes, btn_cultura, btn_culturas, btn_hobbie, btn_hobbies, sup_resultados;
 	private int index;
 	private String name, user, email, pass, adress;
 	private Analisis analisis;
@@ -118,6 +118,7 @@ public class Logica {
 
 		cpscreen = app.loadImage("../data/Recursos_Pantallas/cp_screen.jpg");
 		cpscreen2 = app.loadImage("../data/Recursos_Pantallas/cp_screen2.jpg");
+		sup_resultados = app.loadImage("../data/Recursos_Pantallas/sup_resultados.jpg");
 
 		// PANTALLA 23 PERFIL BOTONES
 
@@ -353,6 +354,10 @@ public class Logica {
 			} else {
 				app.image(iconmenu, 330, 20, 59, 43);
 			}
+			
+		app.image(sup_resultados, 0, 0);
+			
+			
 		} else if (pantalla == 21) {
 
 			// BUTTON MENU DESPLEGABLE
