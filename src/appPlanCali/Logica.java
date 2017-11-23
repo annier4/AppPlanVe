@@ -36,8 +36,8 @@ public class Logica {
 		// analisis = new Analisis(excel.getLugares(), excel.getUsuarios());
 		usuarios = excel.getUsuarios();
 
-		pantalla = 18;
-		pantallasImg = new PImage[25];
+		pantalla = 24;
+		pantallasImg = new PImage[26];
 
 		index = 6;
 		name = "";
@@ -389,6 +389,8 @@ public class Logica {
 			}
 		} else if (pantalla == 24) {
 
+
+
 			// BUTTON MENU DESPLEGABLE
 			if (app.mouseX > 340 && app.mouseX < 380 && app.mouseY > 23 && app.mouseY < 60) {
 				app.image(iconmenu, 330, 19, 62, 46);
@@ -396,11 +398,36 @@ public class Logica {
 				app.image(iconmenu, 330, 20, 59, 43);
 			}
 			
+			if(app.mouseX > 0 && app.mouseX<196 && app.mouseY >93 && app.mouseY <398 ){
+				app.image(btn_natures, 0, 93);
+			}else {
+				app.image(btn_nature, 0, 93);
+			}
 			
-			//app.image(btn_nature, 0, 300);
+			if(app.mouseX > 196 && app.mouseX<800 && app.mouseY >93 && app.mouseY <398){
+			app.image(btn_deportes, 197, 93);
+			}else {
+				app.image(btn_deporte, 197, 93);	
+			}
+			
+			
+			if(app.mouseX > 0 && app.mouseX<196 && app.mouseY >398 && app.mouseY <700 ){
+			app.image(btn_culturas, 0, 400);
+			}else {
+				app.image(btn_cultura, 0, 400);
+			}
+			
+			if(app.mouseX > 196 && app.mouseX<800 && app.mouseY >398 && app.mouseY <700 ){
+			app.image(btn_hobbies, 197, 400);
+			}else {
+				app.image(btn_hobbie, 197, 400);
+			}
+
+		
+		
 			
 
-		}
+		} if (pantalla == 25) {}
 
 	}
 
@@ -692,6 +719,12 @@ public class Logica {
 				pantalla = 18;
 			}
 			break;
+			
+			
+		case 25:
+			
+			break;
+			
 
 		}
 	}
